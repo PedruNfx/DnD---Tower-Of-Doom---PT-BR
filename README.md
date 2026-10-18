@@ -15,7 +15,7 @@ Tradução para português do Brasil do arcade **Dungeons & Dragons: Tower of Do
   - painel dos jogadores (nomes dos itens, iniciais das classes, "N" de nível)
   - tela de seleção: placa "SELEÇÃO", LUTADOR, CLÉRIGO, ELFA, ANÃO e as legendas das caixas
   - "TEMPO" no cronômetro
-  - loja: placa "SAÍDA" e etiqueta "ÓLEO"
+  - loja: placa "SAÍDA", etiqueta "ÓLEO" e as letras das mãos do cursor (L, C, E, A)
   - ranking
   - banner da demo
 - Aviso inicial, tela do QSound, texto da marca registrada e copyright
