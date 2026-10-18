@@ -1,3 +1,4 @@
-# Textos em bytes ASCII (mesmo tamanho exato, sem acentos)
-CREDITS: |FICHAS:  
-CLEAR TIME    :  |TEMPO DA FASE :  
+# Textos em bytes ASCII (no máximo o mesmo tamanho; o que faltar vira espaço; sem acentos)
+CREDITS: |FICHAS:
+CLEAR TIME    :  |TEMPO DA FASE :
+(CONTINUE REQUIRES ONLY 1)|(PARA CONTINUAR: 1 FICHA)

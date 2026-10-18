@@ -503,7 +503,7 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
 {
   my $tr = load_tr("$tdir/bytemap.txt");
   if (%$tr) { my $cnt = 0; my @regions = ([0x12FE00, 0x12FF40], [0x040080, 0x040100]);
-    for my $en (keys %$tr) { my $pt = $tr->{$en}; die "bytemap: '$pt' must have the same length as '$en'\n" if length $pt != length $en;
+    for my $en (keys %$tr) { my $pt = $tr->{$en}; die "bytemap: '$pt' is longer than '$en'\n" if length $pt > length $en; $pt .= ' ' x (length($en) - length $pt);
       for my $r (@regions) { my ($lo, $hi) = @$r; my $p = $lo; while (($p = index($P0, $en, $p)) >= 0 && $p < $hi) { substr($P, $p, length $pt) = $pt; $cnt++; $p++; } } }
     print "bytemap: $cnt replacements\n"; }
 }
@@ -539,6 +539,20 @@ sub patch_lea { my ($at, $target) = @_;
   substr($P, 0x033B3A, length($r1 . $r2)) = $r1 . $r2; patch_lea(0x030742, 0x033B3A + length $r1);
   substr($P, 0x03F8BA, 10) = pack('n*', $big->("N\x{cd}VEL")); substr($P, 0x03F8DC, 6) = pack('n*', $big->("M\x{c1}X"));   # level-up
   print "banner: replaced\n"; }
+# name entry "END" (small style of the big font: tiles 0x04C4-0x04C9 rows 5-7 over 0x04D4-0x04D9 rows 0-7) -> "FIM"
+{ my $set = sub { my ($x, $y, $p) = @_; my $c = ($y < 3 ? 0x04C4 : 0x04D4) + int($x / 8); my $row = $y < 3 ? $y + 5 : $y - 3;
+    my $o = (0x20000 + $c) * 64 + $row * 8; my @b = unpack('C8', substr($Font::G, $o, 8)); my $bit = 7 - $x % 8;
+    for my $pl (0 .. 3) { for my $hf (0, 1) { my $i = $pl + 4 * $hf; $b[$i] = ($b[$i] & ~(1 << $bit)) | ((($p >> $pl) & 1) << $bit); } } substr($Font::G, $o, 8) = pack('C8', @b); };
+  for my $y (0 .. 10) { $set->($_, $y, 15) for 0 .. 47; }
+  my %F = (F => ['##########', '.###....##', '.###.....#', '.###......', '.#######..', '.###......', '.###......', '.###......', '.###......', '#####.....'],
+           I => ['#####', '.###.', '.###.', '.###.', '.###.', '.###.', '.###.', '.###.', '.###.', '#####'],
+           M => ['###.....###', '.###...###.', '.####.####.', '.##.###.##.', '.##..#..##.', '.##.....##.', '.##.....##.', '.##.....##.', '.##.....##.', '###.....###']);
+  my @pen = (3, 2, 2, 1, 0, 0, 1, 2, 3, 3); my %ink;
+  for my $g (['F', 8], ['I', 21], ['M', 29]) { my ($ch, $x0) = @$g; my $m = $F{$ch};
+    for my $r (0 .. 10) { for my $c (0 .. length($m->[$r]) - 1) { $ink{ ($x0 + $c) . ",$r" } = 1 if substr($m->[$r], $c, 1) eq '#'; } } }
+  for my $k (keys %ink) { my ($x, $y) = split /,/, $k; for my $s ([$x + 1, $y], [$x + 1, $y + 1]) { my ($sx, $sy) = @$s; $set->($sx, $sy, 0xC) if $sy <= 10 && $sx < 48 && !$ink{"$sx,$sy"}; } }
+  for my $k (keys %ink) { my ($x, $y) = split /,/, $k; $set->($x, $y, $pen[$y]); }
+  print "name entry: END -> FIM\n"; }
 # "There!" shout over the HUD before the wounded soldier (record [pos, 0010, text, 4040]; 4 letters -> one column right)
 { my $r = pack('n*', 0x1715, 0x0010, enc('Ali!'), 0x4040); die "There! record too long\n" if length $r > 18; substr($P, 0x0F3EB2, length $r) = $r; }
 
