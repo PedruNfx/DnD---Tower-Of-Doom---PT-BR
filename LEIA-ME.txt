@@ -23,8 +23,10 @@ TRADUZIDO
     (no painel a inicial virou L/C/E/A e o nível aparece como "N7" em vez de "L7")
   - Tela de seleção: legendas das caixas ("Força e vigor", "Guerreiro e curandeiro"...)
   - Demo: "INSIRA FICHA" no lugar de "PLEASE INSERT COIN"; "NÍVEL" na subida de nível
-  Ainda em inglês (gráficos decorativos): título "PLAYER SELECT", "CONTINUE", "GAME OVER",
-  "RANKING", "BONUS/TOTAL" e o "L-10" do ranking.
+  - Aviso inicial, tela do QSound, texto da marca e copyright na tela título; "TEMPO" no cronômetro
+  - Placa "SELEÇÃO" no lugar de "PLAYER SELECT"
+  Ainda em inglês (gráficos decorativos): "CONTINUE", "GAME OVER",
+  "RANKING", "BONUS/TOTAL", "RECYCLE IT", o "L-10" do ranking e, na loja, "OIL" e "EXIT".
 
 MAME
   Substitua os 11 arquivos dentro do zip (com o ddtodu.key incluso). O MAME vai avisar que

@@ -13,12 +13,14 @@ Tradução para português do Brasil do arcade **Dungeons & Dragons: Tower of Do
 - Mensagens de ficha e start ("INSIRA FICHA", "APERTE START", "ENTRAR!", "FICHAS:")
 - Gráficos redesenhados:
   - painel dos jogadores (nomes dos itens, iniciais das classes, "N" de nível)
-  - tela de seleção: LUTADOR, CLÉRIGO, ELFA, ANÃO e as legendas das caixas
+  - tela de seleção: placa "SELEÇÃO", LUTADOR, CLÉRIGO, ELFA, ANÃO e as legendas das caixas
+  - "TEMPO" no cronômetro
   - ranking
   - banner da demo
-- Novos caracteres acentuados nas fontes (ã, õ, ç, â, ê, ô, à, Ç, Ã, Õ…)
+- Aviso inicial, tela do QSound, texto da marca registrada e copyright
+- Novos caracteres acentuados nas fontes (ã, õ, ç, â, ê, ô, à, á, é, í, Ç, Ã, Õ…)
 
-Ainda em inglês (gráficos decorativos): "PLAYER SELECT", "CONTINUE", "GAME OVER", "RANKING", "BONUS/TOTAL" e o "L-10" do ranking.
+Ainda em inglês (gráficos decorativos): "CONTINUE", "GAME OVER", "RANKING", "BONUS/TOTAL", "RECYCLE IT", o "L-10" do ranking e, na loja, "OIL" e "EXIT".
 
 ## Como jogar
 
@@ -76,6 +78,7 @@ projeto/
     bosses*.txt     falas dos chefes
     spells.txt      magias
     items.txt, enemies.txt
+    legal.txt       aviso inicial, QSound, marca e copyright
     textmap.txt     mensagens do sistema (substituição no lugar)
     bytemap.txt     textos ASCII de tamanho fixo
     …

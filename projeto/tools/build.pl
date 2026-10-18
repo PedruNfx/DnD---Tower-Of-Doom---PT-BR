@@ -345,6 +345,83 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
     my $t = 0; $t += $_ for values %hits; print "textmap: $t replacements (" . scalar(keys %hits) . " texts)\n"; }
 }
 
+# ---------- legal / boot texts (title trademark, copyright, WARNING, QSound): raw bytes in the bank-0 ASCII font ----------
+# Lines are fixed-width runs between '/' and '@'; a translation keeps the run width (padded, or centred if the original was).
+# New lowercase accents go into unused bank-0 codes: 0x7B á, 0x7C ã, 0x7D ç, 0x7E é, 0x60 í.
+{ my %acc = ("\x{e1}" => [0x7B, 0x61, 'acute'], "\x{e3}" => [0x7C, 0x61, 'tilde'], "\x{e7}" => [0x7D, 0x63, 'ced'], "\x{e9}" => [0x7E, 0x65, 'acute'], "\x{ed}" => [0x60, 0x69, 'acute']);
+  my %ink = (acute => [[0,4],[1,3]], tilde => [[0,2],[0,3],[0,5],[1,1],[1,4]]);
+  for my $ch (keys %acc) { my ($code, $base, $a) = @{ $acc{$ch} }; my $src = Font::get8($base); my $g = [ map { [ (15) x 8 ] } 0 .. 7 ];
+    if ($a eq 'ced') {   # c raised one row, cedilla in rows 6-7
+      $g->[$_ - 1] = [ @{ $src->[$_] } ] for 2 .. 7;
+      for my $p ([6,3],[7,2],[7,3]) { my ($y, $x) = @$p; $g->[$y][$x] = 3; }
+      for my $p ([6,3],[7,2],[7,3]) { my ($y, $x) = @$p; $g->[$y][$x + 1] = 14 if $g->[$y][$x + 1] == 15; } }
+    else {
+      if ($base == 0x61) { $g->[2] = [ @{ $src->[1] } ]; $g->[$_] = [ @{ $src->[$_] } ] for 3 .. 7; }   # a: top bar down one row
+      elsif ($base == 0x69) { $g->[$_] = [ @{ $src->[$_] } ] for 3 .. 7; }                               # i: dot replaced
+      else { $g->[$_] = [ @{ $src->[$_] } ] for 2 .. 7; }
+      for my $p (@{ $ink{$a} }) { my ($y, $x) = @$p; $g->[$y][$x] = 0; }
+      for my $p (@{ $ink{$a} }) { my ($y, $x) = @$p; $g->[$y][$x + 1] = 14 if $x < 7 && $g->[$y][$x + 1] == 15; } }
+    Font::put8($code, $g); }
+  my $tr = load_tr("$tdir/legal.txt"); my $n = 0;
+  for my $en (sort keys %$tr) { my $pt = $tr->{$en}; my $raw = join '', map { exists $acc{$_} ? chr $acc{$_}[0] : $_ } split //, $pt;
+    die "legal: unsupported character in '$pt'\n" if $raw =~ /[^\x20-\x7E]|[\@\/]/ && $raw !~ /^[\x20-\x7E]*$/;
+    my $hits = 0;
+    for my $r ([0x2B80, 0x2D80], [0x2F600, 0x2F900], [0x31900, 0x31C40], [0x31D00, 0x31F00]) { my ($lo, $hi) = @$r; my $p = $lo;
+      while (($p = index($P0, $en, $p)) >= 0 && $p < $hi) { my ($a, $b) = ($p, $p + length $en);
+        $a-- while substr($P0, $a - 1, 1) eq ' '; $b++ while substr($P0, $b, 1) eq ' ';
+        if (substr($P0, $a - 1, 1) =~ /[\x20-\x7E]/ && substr($P0, $a - 1, 1) !~ m{[/#]}) { $p = $b; next; }   # must start a line
+        if (substr($P0, $b, 1) !~ m{[/\@]}) { $p = $b; next; }                                                     # and end it
+        my $w = $b - $a; die "legal: '$pt' too wide (" . length($raw) . " > $w)\n" if length $raw > $w;
+        my $lead = $p - $a > 8 ? int(($w - length $raw) / 2) : 0;
+        substr($P, $a, $w) = (' ' x $lead) . $raw . (' ' x ($w - $lead - length $raw)); $hits++; $p = $b; } }
+    push @warn, "legal: not found: $en" unless $hits; $n += $hits; }
+  print "legal texts: $n lines\n"; }
+
+# ---------- "TIME" label (scroll1 8x8 tiles; the font also holds the Spanish "TIEMPO") -> "TEMPO" ----------
+# TEMPO = TIEMPO (row 0x3690, strip columns 36-75) without the I; it replaces every copy of the TIME block.
+{ my $pxs = sub { my ($row, $x, $y) = @_; my @b = unpack('C4', substr($Font::G, (0x20000 + $row + int($x / 8)) * 64 + $y * 8, 4)); my $bit = 7 - ($x % 8);
+    return ((($b[3] >> $bit) & 1) << 3) | ((($b[2] >> $bit) & 1) << 2) | ((($b[1] >> $bit) & 1) << 1) | (($b[0] >> $bit) & 1); };
+  my $set = sub { my ($row, $x, $y, $p) = @_; my $o = (0x20000 + $row + int($x / 8)) * 64 + $y * 8; my @b = unpack('C8', substr($Font::G, $o, 8)); my $bit = 7 - ($x % 8);
+    for my $pl (0 .. 3) { for my $hf (0, 1) { my $i = $pl + 4 * $hf; $b[$i] = ($b[$i] & ~(1 << $bit)) | ((($p >> $pl) & 1) << $bit); } } substr($Font::G, $o, 8) = pack('C8', @b); };
+  my @tempo = map { my $x = $_; [ map { $pxs->(0x3690, $x, $_) } 0 .. 7 ] } 36 .. 42, 48 .. 75;
+  my @time = map { my $x = $_; [ map { $pxs->(0x3690, $x, $_) } 0 .. 7 ] } 85 .. 121;
+  my $n = 0;
+  for my $row (0x3680, 0x3690, 0x36A0) { for my $off (0 .. 128 - @time) {
+      next if grep { my $c = $_; grep { $pxs->($row, $off + $c, $_) != $time[$c][$_] } 0 .. 7 } 0 .. $#time;
+      for my $x ($off .. $off + $#time) { $set->($row, $x, $_, 15) for 0 .. 7; }
+      my $x0 = $off + int((@time - @tempo) / 2); for my $c (0 .. $#tempo) { $set->($row, $x0 + $c, $_, $tempo[$c][$_]) for 0 .. 7; } $n++; } }
+  die "TIME label not found\n" unless $n; print "TIME -> TEMPO: $n copies\n"; }
+
+# ---------- "PLAYER SELECT" wooden sign (28x4 scroll1 tiles: 0x160A+, 0x1680+, 0x1700+) -> "SELEÇÃO" ----------
+# Letters are pens B/C/D on a wood texture. S E L E C come from SELECT; Ç = C + cedilla, Ã = A (from PLAYER) + tilde,
+# O = C closed with its own mirrored left half. The old letters are painted over with wood from the same row.
+{ my $code = sub { my ($c, $r) = @_; return ($c < 6 ? 0x160A + $c : $c < 22 ? 0x1680 + $c - 6 : 0x1700 + $c - 22) + 0x10 * $r; };
+  my $get = sub { my ($x, $y) = @_; my @b = unpack('C4', substr($Font::G, (0x20000 + $code->(int($x / 8), int($y / 8))) * 64 + ($y % 8) * 8, 4)); my $bit = 7 - $x % 8;
+    return ((($b[3] >> $bit) & 1) << 3) | ((($b[2] >> $bit) & 1) << 2) | ((($b[1] >> $bit) & 1) << 1) | (($b[0] >> $bit) & 1); };
+  my $put = sub { my ($x, $y, $p) = @_; my $o = (0x20000 + $code->(int($x / 8), int($y / 8))) * 64 + ($y % 8) * 8; my @b = unpack('C8', substr($Font::G, $o, 8)); my $bit = 7 - $x % 8;
+    for my $pl (0 .. 3) { for my $hf (0, 1) { my $i = $pl + 4 * $hf; $b[$i] = ($b[$i] & ~(1 << $bit)) | ((($p >> $pl) & 1) << $bit); } } substr($Font::G, $o, 8) = pack('C8', @b); };
+  my @cv = map { my $y = $_; [ map { $get->($_, $y) } 0 .. 223 ] } 0 .. 31;
+  my $ink = sub { $_[0] >= 0xB && $_[0] <= 0xD };
+  my $near = sub { my ($x, $y) = @_; for my $dy (-1 .. 1) { for my $dx (-1 .. 1) { my ($a, $b) = ($x + $dx, $y + $dy); return 1 if $b >= 0 && $b < 32 && $a >= 0 && $a < 224 && $ink->($cv[$b][$a]); } } return 0; };
+  # glyph columns of 32 pens: the letter pens plus the dark carved halo touching them (pens <= 7)
+  my $glyph = sub { my ($x0, $x1) = @_; [ map { my $x = $_; [ map { my $p = $cv[$_][$x]; $ink->($p) || ($p <= 7 && $_ >= 5 && $_ <= 26 && $near->($x, $_)) ? $p : 15 } 0 .. 31 ] } $x0 - 1 .. $x1 + 1 ] };
+  my %G = (S => $glyph->(118, 129), E => $glyph->(132, 146), L => $glyph->(148, 162), C => $glyph->(180, 193), A => $glyph->(44, 56));
+  my $mark = sub { my ($g, $pts) = @_; my @n = map { [ @$_ ] } @$g;
+    for my $p (@$pts) { my ($x, $y) = @$p; $n[$x][$y] = 0xC; } for my $p (@$pts) { my ($x, $y) = @$p; $n[$x - 1][$y + 1] = 0xD if $x > 0 && $n[$x - 1][$y + 1] == 15; } return \@n; };
+  my $cw = @{ $G{C} }; my $mid = int($cw / 2);
+  $G{O} = [ (map { [ @{ $G{C}[$_] } ] } 0 .. $mid - 1), (map { [ @{ $G{C}[$mid - 1 - $_] } ] } 0 .. $mid - 1) ];
+  $G{"\x{c7}"} = $mark->($G{C}, [ map { [$mid + $_->[0], $_->[1]] } [0,24], [1,24], [1,25], [2,25], [-1,26], [0,26], [1,26] ]);
+  $G{"\x{c3}"} = $mark->($G{A}, [ map { [3 + $_->[0], $_->[1]] } [1,5], [2,5], [3,5], [7,5], [0,6], [4,6], [5,6], [6,6] ]);
+  # paint the old letters and their dark halo over with clean wood from the same row (runs map to runs, keeping the grain)
+  my %dirty; for my $y (5 .. 26) { for my $x (0 .. 223) { next unless $ink->($cv[$y][$x]);
+    for my $dy (-2 .. 2) { for my $dx (-3 .. 3) { $dirty{ ($y + $dy) . ',' . ($x + $dx) } = 1; } } } }
+  for my $y (5 .. 26) { my @clean = grep { !$dirty{"$y,$_"} } 8 .. 215; next unless @clean; my $k = ($y * 37) % @clean;
+    for my $x (8 .. 215) { next unless $dirty{"$y,$x"}; $put->($x, $y, $cv[$y][ $clean[ ($k + $x) % @clean ] ]); } }
+  my @word = ('S', 'E', 'L', 'E', "\x{c7}", "\x{c3}", 'O'); my $gap = 0; my $w = -$gap; $w += @{ $G{$_} } + $gap for @word;
+  my $x = 112 - int($w / 2);
+  for my $ch (@word) { my $g = $G{$ch}; for my $c (0 .. $#$g) { for my $y (0 .. 31) { $put->($x + $c, $y, $g->[$c][$y]) if $g->[$c][$y] != 15; } } $x += @$g + $gap; }
+  print "PLAYER SELECT -> SELE\x{c7}\x{c3}O ($w px)\n"; }
+
 # ---------- short two-line "INSERT/ COIN" slot records (two tables of 4 slots: [pos, 0004, text, 4040]) ----------
 # "INSIRA/FICHA" centred needs one word more than the original, so the records move to the free pool
 # with the same position: INSIRA on columns c..c+5 and the half-shifted FICHA (0x1420-0x1425) under it.

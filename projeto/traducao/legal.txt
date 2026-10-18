@@ -1,0 +1,26 @@
+# Textos legais e de abertura (fonte ASCII 8x8, linhas de largura fixa). "Linha em inglês sem espaços nas pontas|português".
+# A tradução não pode ser mais larga que a linha original (contando os espaços que sobram nela).
+# Acentos disponíveis: á ã ç é í. Copyright: escreva sem o "#" inicial (ele aparece como © e fica no lugar).
+DUNGEONS & DRAGONS is a|DUNGEONS & DRAGONS é
+trademark owned by TSR,|marca registrada da
+Inc., Lake Geneva, WI.|TSR, Inc., Lake Geneva,
+USA and used under|WI, EUA, usada sob
+license from SSI.|licença da SSI,
+Sunnyvale. CA. USA.|Sunnyvale, CA, EUA.
+SSI.1993 All Rights Reserved.|SSI.1993 Direitos reservados.
+TSR,Inc.1993 All Rights Reserved.|TSR,Inc.1993 Direitos reservados.
+Capcom Co.,Ltd.1993 All Rights Reserved.|Capcom Co.,Ltd.1993 Direitos reservados.
+WARNING|AVISO
+This game is for use in the United States|Este jogo destina-se ao uso somente nos
+of America and Canada only.|Estados Unidos da América e no Canadá.
+Sales, export or operation outside these|A venda, exportação ou operação fora
+countries may be construed as copyright|destes países pode ser considerada
+and trademark infringement and is strictly|violação de direitos autorais e de marca
+prohibited.|registrada, e é estritamente proibida.
+Violators are subject to severe penalties|Os infratores estão sujeitos a severas
+and will be prosecuted to the full extent|penalidades e serão processados com o
+of the law.|máximo rigor da lei.
+QSound Chips have been developed by QSound|Os chips QSound foram desenvolvidos pela
+and incorporate QSound's proprietary QSound|QSound e incorporam a tecnologia QSound
+sound enhancement technology|exclusiva de aprimoramento sonoro.
+All Rights Reserved.|Direitos reservados.
