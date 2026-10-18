@@ -24,7 +24,7 @@ TRADUZIDO
   - Tela de seleção: legendas das caixas ("Força e vigor", "Guerreiro e curandeiro"...)
   - Demo: "INSIRA FICHA" no lugar de "PLEASE INSERT COIN"; "NÍVEL" na subida de nível
   - Aviso inicial, tela do QSound, texto da marca e copyright na tela título; "TEMPO" no cronômetro
-  - Placa "SELEÇÃO" no lugar de "PLAYER SELECT"; na loja, placa "SAÍDA", etiqueta "ÓLEO"
+  - Placa "SELEÇÃO" no lugar de "PLAYER SELECT"; na loja, placa "SAÍDA", etiqueta "ÓLEO", "ESGOTADO"
     e as letras L/C/E/A nas mãos do cursor
   Ainda em inglês (gráficos decorativos): "CONTINUE", "GAME OVER",
   "RANKING", "BONUS/TOTAL", "RECYCLE IT" e o "L-10" do ranking.

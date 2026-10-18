@@ -476,7 +476,18 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
     my @A = ('....###....', '...#####...', '..###.###..', '..##...##..', '.#########.', '.###...###.', '###.....###', '####...####');
     for my $r (0 .. 7) { for my $c (0 .. 10) { next unless substr($A[$r], $c, 1) eq '#'; my $left = $c == 0 || substr($A[$r], $c - 1, 1) ne '#';
       $put->(10 + $c, 6 + $r, $left ? 6 : $r <= 3 ? 4 : 5); } } }
-  print "shop signs: SA\x{cd}DA, \x{d3}LEO; hand medallions L, A\n"; }
+  # "SOLD OUT" plaque: sprite pieces 0x9803, 0x9826, 0x9829, 0x9960, 0x99E7 side by side; red letters pen D on grey pen 3
+  { my ($get, $put) = $canvas->([0x9803, 0x9826, 0x9829, 0x9960, 0x99E7]);
+    for my $y (3 .. 10) { for my $x (3 .. 63) { my $p = $get->($x, $y); $put->($x, $y, 3) if $p == 0xD || $p == 4; } }
+    my %F = (E => ['######', '##....', '##....', '#####.', '##....', '##....', '##....', '######'],
+             S => ['.#####', '##....', '##....', '.####.', '....##', '....##', '....##', '#####.'],
+             G => ['.#####', '##....', '##....', '##.###', '##..##', '##..##', '##..##', '.#####'],
+             O => ['.####.', '##..##', '##..##', '##..##', '##..##', '##..##', '##..##', '.####.'],
+             T => ['######', '..##..', '..##..', '..##..', '..##..', '..##..', '..##..', '..##..'],
+             A => ['.####.', '##..##', '##..##', '##..##', '######', '##..##', '##..##', '##..##'],
+             D => ['#####.', '##..##', '##..##', '##..##', '##..##', '##..##', '##..##', '#####.']);
+    $put->($_->[0], $_->[1], 0xD) for $draw->($put, \%F, 'ESGOTADO', 6, 3, 1); }
+  print "shop signs: SA\x{cd}DA, \x{d3}LEO, ESGOTADO; hand medallions L, A\n"; }
 
 # ---------- short two-line "INSERT/ COIN" slot records (two tables of 4 slots: [pos, 0004, text, 4040]) ----------
 # "INSIRA/FICHA" centred needs one word more than the original, so the records move to the free pool
