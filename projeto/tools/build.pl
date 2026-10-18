@@ -422,6 +422,42 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
   for my $ch (@word) { my $g = $G{$ch}; for my $c (0 .. $#$g) { for my $y (0 .. 31) { $put->($x + $c, $y, $g->[$c][$y]) if $g->[$c][$y] != 15; } } $x += @$g + $gap; }
   print "PLAYER SELECT -> SELE\x{c7}\x{c3}O ($w px)\n"; }
 
+# ---------- shop: "EXIT" sign (16x16 tiles 0x9F07-0x9F0A over 0x9F17-0x9F1A) -> "SAÍDA", "OIL" label (0x9F8C-0x9F8D) -> "ÓLEO" ----------
+{ my $sget = sub { my ($t, $x, $y) = @_; my @b = unpack('C4', substr($Font::G, $t * 128 + $y * 8 + ($x < 8 ? 0 : 4), 4)); my $bit = 7 - $x % 8;
+    return ((($b[3] >> $bit) & 1) << 3) | ((($b[2] >> $bit) & 1) << 2) | ((($b[1] >> $bit) & 1) << 1) | (($b[0] >> $bit) & 1); };
+  my $sput = sub { my ($t, $x, $y, $p) = @_; my $o = $t * 128 + $y * 8 + ($x < 8 ? 0 : 4); my @b = unpack('C4', substr($Font::G, $o, 4)); my $bit = 7 - $x % 8;
+    for my $pl (0 .. 3) { $b[$pl] = ($b[$pl] & ~(1 << $bit)) | ((($p >> $pl) & 1) << $bit); } substr($Font::G, $o, 4) = pack('C4', @b); };
+  my $canvas = sub { my @rows = @_; my $W = 16 * @{ $rows[0] };   # rows of tile codes -> (get, put) over the block
+    (sub { my ($x, $y) = @_; $sget->($rows[int($y / 16)][int($x / 16)], $x % 16, $y % 16) }, sub { my ($x, $y, $p) = @_; $sput->($rows[int($y / 16)][int($x / 16)], $x % 16, $y % 16, $p) }) };
+  my $draw = sub { my ($put, $font, $text, $x, $y0, $gap) = @_; my @pts;
+    for my $ch (split //, $text) { my $m = $font->{$ch} or die "shop font: no '$ch'\n"; my $w = 0; $w = length > $w ? length : $w for @$m;
+      for my $r (0 .. $#$m) { for my $c (0 .. length($m->[$r]) - 1) { push @pts, [$x + $c, $y0 + $r] if substr($m->[$r], $c, 1) eq '#'; } } $x += $w + $gap; }
+    return @pts; };
+  # EXIT sign: letters pen B rows 6-16 inside the wooden board (text area x 21-72 of the 64x32 block, x counted from tile 0x9F06)
+  { my ($get, $put) = $canvas->([0x9F06 .. 0x9F0B], [0x9F16 .. 0x9F1B]);
+    my %ink; for my $y (5 .. 17) { for my $x (21 .. 73) { my $p = $get->($x, $y); $ink{"$y,$x"} = 1 if $p == 0xB || ($p == 0xA && $y >= 6 && $y <= 16); } }
+    my %dirty; for my $k (keys %ink) { my ($y, $x) = split /,/, $k; for my $dy (-1 .. 1) { for my $dx (-1 .. 1) { $dirty{ ($y + $dy) . ',' . ($x + $dx) } = 1; } } }
+    my %orig; for my $y (5 .. 17) { $orig{"$y,$_"} = $get->($_, $y) for 20 .. 74; }
+    for my $y (6 .. 16) { my @clean = grep { !$dirty{"$y,$_"} } 21 .. 72; next unless @clean; my $k = ($y * 11) % @clean;
+      for my $x (21 .. 72) { $put->($x, $y, $orig{"$y,$clean[($k + $x) % @clean]"}) if $dirty{"$y,$x"}; } }
+    my %F = (S => ['.#######', '###...##', '###.....', '###.....', '.#####..', '..######', '.....###', '.....###', '##...###', '########', '.######.'],
+             A => ['...####...', '..######..', '.###..###.', '.###..###.', '###....###', '###....###', '##########', '###....###', '###....###', '###....###', '###....###'],
+             "\x{cd}" => [ ('###') x 11 ],
+             D => ['######..', '###.###.', '###..###', '###..###', '###..###', '###..###', '###..###', '###..###', '###..###', '###.###.', '######..']);
+    my $txt = "SA\x{cd}DA"; my $w = -2; for (split //, $txt) { my $m = $F{$_}; my $l = 0; $l = length > $l ? length : $l for @$m; $w += $l + 2; }
+    my $x0 = 47 - int($w / 2); my @pts = $draw->($put, \%F, $txt, $x0, 6, 2);
+    my $ix = $x0 + 9 + 2 + 9 + 2; push @pts, [$ix + 2, 4], [$ix + 1, 5];   # acute over the I (rows 4-5)
+    my %on = map {; "$_->[0],$_->[1]" => 1 } @pts;
+    for my $p (@pts) { my ($x, $y) = @$p; $put->($x - 1, $y, 4) unless $on{ ($x - 1) . ",$y" }; }   # dark carved edge on the left
+    $put->($_->[0], $_->[1], 0xB) for @pts; }
+  # OIL label: grey box pen B, letters pen D rows 8-12 (x counted from tile 0x9F8B)
+  { my ($get, $put) = $canvas->([0x9F8B .. 0x9F8E]);
+    for my $y (7 .. 13) { for my $x (20 .. 45) { $put->($x, $y, 0xB) if $get->($x, $y) == 0xD; } }
+    my %F = (O => ['.###.', '##.##', '##.##', '##.##', '.###.'], L => ['##..', '##..', '##..', '##..', '####'], E => ['####', '##..', '###.', '##..', '####']);
+    $F{"\x{d3}"} = $F{O}; my @pts = $draw->($put, \%F, "\x{d3}LEO", 22, 8, 1); push @pts, [25, 7], [26, 7];
+    $put->($_->[0], $_->[1], 0xD) for @pts; }
+  print "shop signs: SA\x{cd}DA, \x{d3}LEO\n"; }
+
 # ---------- short two-line "INSERT/ COIN" slot records (two tables of 4 slots: [pos, 0004, text, 4040]) ----------
 # "INSIRA/FICHA" centred needs one word more than the original, so the records move to the free pool
 # with the same position: INSIRA on columns c..c+5 and the half-shifted FICHA (0x1420-0x1425) under it.

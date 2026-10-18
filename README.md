@@ -15,12 +15,13 @@ Tradução para português do Brasil do arcade **Dungeons & Dragons: Tower of Do
   - painel dos jogadores (nomes dos itens, iniciais das classes, "N" de nível)
   - tela de seleção: placa "SELEÇÃO", LUTADOR, CLÉRIGO, ELFA, ANÃO e as legendas das caixas
   - "TEMPO" no cronômetro
+  - loja: placa "SAÍDA" e etiqueta "ÓLEO"
   - ranking
   - banner da demo
 - Aviso inicial, tela do QSound, texto da marca registrada e copyright
 - Novos caracteres acentuados nas fontes (ã, õ, ç, â, ê, ô, à, á, é, í, Ç, Ã, Õ…)
 
-Ainda em inglês (gráficos decorativos): "CONTINUE", "GAME OVER", "RANKING", "BONUS/TOTAL", "RECYCLE IT", o "L-10" do ranking e, na loja, "OIL" e "EXIT".
+Ainda em inglês (gráficos decorativos): "CONTINUE", "GAME OVER", "RANKING", "BONUS/TOTAL", "RECYCLE IT" e o "L-10" do ranking.
 
 ## Como jogar
 
