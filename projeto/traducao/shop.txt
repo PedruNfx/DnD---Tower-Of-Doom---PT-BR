@@ -1,0 +1,61 @@
+# Lojas e NPCs das cidades. Máx. 21 caracteres por linha, 5 linhas.
+# Registros 0-4: o preço (dígitos grandes) é desenhado por cima, numa posição fixa:
+#   0: linha 1, colunas 13-16 | 1: linha 2, col. 17-20 | 2: linha 3, col. 5-8
+#   3: linha 1, col. 16-19    | 4: linha 2, col. 14-19 (3 dígitos)
+0|Adaga custa/peças de prata.
+1|É um martelo de/arremesso. Custa/peças de prata.
+2|Flechas com ponta de/prata. Cada uma sai/por      peças.
+3|Frasco de óleo:/peças de prata/por frasco.
+4|Essa poção/de cura custa/peças de prata.
+5|Clérigos não podem/usar espadas.
+8|Olá! Posso/ajudar?
+9|A cidade acabou de/ser atacada por/monstros, mas nossa/milícia os expulsou.
+10|Aquela caravana ia/para Nemiston. Ela/pertence à casa/de Linton.
+11|Vocês me acham/bonito?/A maioria acha.
+12|Dizem que a criatura/que ataca o Forte/Cruth controla/ilusões.
+13|Também ouvi dizer que/viajantes na estrada/estão sendo atacados/por monstros.
+14|Se forem pela estrada/principal, fiquem/atentos aos/monstros!
+15|Opa, preciso ir/agora. Tenho um/encontro hoje. Tchau.
+16|Bem-vindos à minha/loja. Posso ajudar/em alguma coisa?
+17|Já viram aquele/belo navio atracado/no cais?
+18|Aquele navio e quase/todas as caravanas/daqui pertencem à/casa de Linton.
+19|Por favor, não me/encarem. Isso me/deixa nervoso.
+20|Também ouvi dizer que/uns aventureiros/salvaram uma caravana/do Lorde. Duvido/muito.
+21|O quê?! Salvaram a/caravana? Não posso/acreditar!
+22|Ah, então são vocês/os heróis de quem/tanto ouvi falar./Contem-me tudo!
+23|Sinto muito, mas/está na hora de/fechar.
+24|Bom dia! Posso trazer/algo pra vocês?
+25|Dizem que quando/Cruth foi atacada,/os monstros mataram/todos os soldados.
+26|Acho que podemos ser/os próximos. Só de/pensar nisso eu me/borro de medo.
+27|Se eu fosse mais/jovem, eu mesmo/mataria o dragão.
+28|Cuidado com o sopro/ácido do dragão./Ele dissolve tudo/o que toca.
+29|Acham que o escudo/vai protegê-los do/sopro do dragão?/Ele vai derreter/na sua mão.
+30|Desejo boa sorte./Vão precisar.
+31|Escutem! É o rugido/do Dragão. Hora de/fechar a loja!
+32|Bem-vindos, como/posso servi-los?
+33|Minha filha sumiu/a caminho de/Nemiston.
+34|O chefe da caravana/disse que ela foi/buscar água e nunca/mais voltou.
+35|Ela deve ter sido/devorada pelos/monstros. Minha/pobre Clea.
+36|Quando essas/tragédias vão/acabar?
+37|A guerra só traz/sofrimento. Quando/poderemos viver em/paz de novo?
+38|Cuidem-se/bem.
+39|Desculpem, mas acho/que vou fechar a/loja agora.
+40|Oi, pessoal! Em que/posso ajudar?
+41|Acredito que um dia/um homem corajoso/vai aparecer e/derrotar os/monstros.
+42|Ele virá até mim/num cavalo branco e/estenderá a sua/mão.
+43|E partiremos juntos/... O que foi?/Estou entediando/vocês?
+44|Souberam da torre/negra que surgiu/na montanha do/norte?
+45|Todos dizem sentir/algo maligno naquela/torre, algo/sinistro.
+46|Se forem até lá,/tomem cuidado./Ninguém jamais/voltou de lá.
+47|Isso foi o rugido de/um monstro? É melhor/eu fechar a loja/agora.
+48|Bem-vindos... Ah, são/os bravos heróis que/me salvaram outro/dia.
+49|Não sei como lhes/agradecer pelo que/fizeram por mim.
+50|Se não fosse por/vocês, eu não estaria/aqui agora.
+51|Aceitem este anel de/proteção como sinal/da minha gratidão.
+52|Da próxima vez que/vierem, farei uma/comida caseira/especial.
+53|Sou o melhor/cozinheiro da cidade./Voltem logo!
+54|Sinto muito, mas/preciso ir agora./Tomem cuidado.
+55|Bem, preciso ir/agora. Vou encontrar/meu pai.
+56|Nossa milícia salvou/a caravana do/mercador daqueles/monstros.
+57|Ouvi dizer que a/cidade de Nemiston/foi salva por/aventureiros./Mas duvido.
+58|Espere, já ouvi falar/de vocês. Foram vocês/que salvaram o Forte/Cruth.

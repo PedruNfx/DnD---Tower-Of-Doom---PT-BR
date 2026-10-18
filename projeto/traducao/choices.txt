@@ -1,0 +1,19 @@
+# Escolhas de caminho (pergunta + opções). Máx. 28 caracteres por linha.
+0|     O que devemos fazer?
+1|Ir para as montanhas/atrás dos monstros.
+2|Ir para a cidade.
+3|  E agora, o que fazemos?
+4|Correr até Darokin e ver/se mandam ajuda.
+5|Ir ao Forte Cruth e tentar/salvá-los por conta própria.
+7|Uma série de cavernas/de calcário.
+8|Uma mina abandonada nos/arredores da cidade.
+9|Um poço antigo na beira/da cidade.
+10|Bem, o que faremos agora?
+11|Partir já e pegar o caminho/longo ao redor da montanha.
+12|Descansar, recuperar magias/e vigor e depois enfrentar/o dragão.
+13|Tem certeza?  Ninguém sequer/arranhou aquele dragão!
+14|Com certeza.
+15|Seja esperto, pegue o/caminho longo e viva!
+16|Sério?  O sopro de fogo dele/incinera tudo num piscar/de olhos!
+17|Absolutamente.
+18|Terão mais chances pegando/o caminho longo ao redor/da montanha.

@@ -1,0 +1,23 @@
+# Introdução (modo demonstração). title = título, after = tela final.
+# lineN = linhas do texto que rola (mesma quantidade e ordem do inglês).
+title|A República de Darokin
+after|E se convenceu de que/havia um mal maior/por trás dos ataques.
+# parágrafo 1 (4 linhas)
+line1|localizada no coração do
+line2|mundo conhecido, era um
+line3|país pacífico e
+line4|próspero.
+# parágrafo 2 (6 linhas)
+line5|Então, tribos de
+line6|humanoides e outros
+line7|monstros vieram das
+line8|terras selvagens.  Sem
+line9|piedade, eles atacaram e
+line10|saquearam.
+# parágrafo 3 (6 linhas)
+line11|Vendo como os monstros
+line12|eram organizados,
+line13|Corwyn Linton, da casa
+line14|mercante Linton, deu
+line15|início a uma
+line16|investigação.

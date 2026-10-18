@@ -1,0 +1,3 @@
+# Textos em bytes ASCII (mesmo tamanho exato, sem acentos)
+CREDITS: |FICHAS:  
+CLEAR TIME    :  |TEMPO DA FASE :  

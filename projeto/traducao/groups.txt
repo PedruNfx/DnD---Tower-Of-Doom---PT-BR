@@ -1,0 +1,6 @@
+# tabelas de 9 idiomas: <endereço da tabela>:<palavras de cabeçalho>|texto
+037AF8:2|Então você parte de manhã?/Pois bem, registre seu nome/e tenha uma boa noite.
+03925A:2:c|Rastros levam à caverna.
+03966E:2|Você deixa a cidade rumo/a Darokin. Monstros/rondam a estrada/principal.
+04A732:2:c|O que aconteceu aqui?
+04A756:2:c|Você está bem?  O que houve?

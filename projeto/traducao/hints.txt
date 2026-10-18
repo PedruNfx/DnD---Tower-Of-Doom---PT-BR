@@ -1,0 +1,35 @@
+# Placas, dicas e avisos (a posição é recentralizada automaticamente). Máx. 30 caracteres por linha.
+0|Seu anel de proteção {14C2}{14C4}/foi perdido.
+1|Seu anel de proteção {14C2}{14C5}/foi perdido.
+2|Suas botas de velocidade/foram danificadas.
+3|Suas manoplas de força de/ogro foram danificadas.
+4|Língua élfica.
+5|Língua anã.
+6|DAROKIN {2CE8}{2CE9}
+7|A tocha da deusa/traz infortúnio.
+8|O livro da deusa/traz tesouros.
+9|A desgraça vem ao amanhecer.
+10|A riqueza está onde o sol/se põe.
+11|A armadilha está à esquerda!/                   Mentiroso
+12|A armadilha está à direita!/             Pessoa honesta
+13|A verdadeira riqueza está/no seu coração.
+14|A verdadeira riqueza está/no seu coração.
+15|A tocha da deusa/traz riqueza.
+16|O livro da deusa traz/ a morte.
+17|A desgraça vem ao anoitecer.
+18|A riqueza está onde o sol/nasce.
+19|A armadilha está à direita!/                  Mentiroso
+20|A armadilha está à esquerda!/              Pessoa honesta
+21|Cuidado com seu coração!
+22|Cuidado com seu coração!
+23|  Procura-se ajudante./  SHADY DRAGON INN
+24|Proibido estacionar.
+25|Você desarmou a armadilha.
+26|Procuram-se aventureiros./            Corwyn Linton
+27|Seja humilde
+28|Forte Runnels/   {2C8B} milhas
+29|Cuidado: queda de pedras.
+30|Tesouro de um morto.
+31|A verdade é seu coração.
+32|Não alimente o fogo.
+33|Vazio.

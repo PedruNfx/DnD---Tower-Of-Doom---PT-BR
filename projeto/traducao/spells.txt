@@ -1,0 +1,14 @@
+# Magias (endereço|Título/descrição...). O título é centralizado automaticamente. Máx. 30 caracteres.
+FB61C|Míssil mágico/Dispara projéteis mágicos/que perseguem os inimigos.
+FB6C0|Invisibilidade/Deixa você invisível até/atacar ou sofrer dano.
+FB778|Bola de fogo/Cria uma bola de fogo/explosiva.
+FB7EE|Relâmpago/Cria uma descarga elétrica.
+FB88C|Metamorfose/Transforma inimigos em/animais inofensivos.
+FBB04|Luz contínua/Cega os inimigos próximos.
+FBB66|Curar feridas/Recupera seus pontos de vida;/pode ser usada nos parceiros.
+FBC0E|Imobilizar/Paralisa seus inimigos.
+FB996|Bastões-cobra/Transforma bastões em cobras/venenosas que atacam seus/inimigos.
+FBC70|Expulsar mortos-vivos/Destrói os mortos-vivos.
+FB85E|Nevasca
+FB90A|Névoa mortal/Mata inimigos fracos com/uma névoa venenosa.
+FBA52|Arma poderosa/Fortalece sua arma; também/serve nas armas dos parceiros.

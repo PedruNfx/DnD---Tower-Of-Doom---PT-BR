@@ -1,0 +1,31 @@
+D&D: Tower of Doom (ddtodur1) - tradução PT-BR
+==================================================================
+
+COMO JOGAR (RetroArch + FinalBurn Neo, já instalado)
+  1. Abra o RetroArch > Carregar Núcleo > FinalBurn Neo
+  2. Carregar Conteúdo > Documentos\ddtod-ptbr\roms\ddtodur1.zip
+  O patch fica em C:\RetroArch-Win64\system\fbneo\patched\ddtodur1.zip e o FBNeo
+  aplica ele sozinho (opção "Allow patched romsets", que vem ligada).
+  Pra voltar pro inglês, é só apagar esse arquivo.
+
+O QUE TEM NA PASTA
+  roms\ddtodur1.zip    sua ROM original + ddtodu.key (a chave do CPS2, que faltava no
+                       seu zip; sem ela as versões atuais do FBNeo/MAME não abrem o jogo)
+  patch\ddtodur1.zip   só os 11 arquivos modificados (dadu.03a/04a/05a = textos e código,
+                       dad.13m-20m = acentos nas fontes, rótulos do painel e legendas da seleção)
+  projeto\             scripts de build e arquivos de tradução (traducao\*.txt)
+
+TRADUZIDO
+  - Introdução, história, lojas e NPCs, escolhas de caminho, placas, falas dos chefes,
+    magias, subida de nível, nomes de inimigos, mensagens de ficha/start
+  - Painel: "INSIRA FICHA", "ENTRAR!", nomes de item (ADAGA, MARTELO, MÍSSIL MÁGICO...)
+  - Classes: LUTADOR, CLÉRIGO, ELFA e ANÃO na seleção, no ranking e no painel
+    (no painel a inicial virou L/C/E/A e o nível aparece como "N7" em vez de "L7")
+  - Tela de seleção: legendas das caixas ("Força e vigor", "Guerreiro e curandeiro"...)
+  - Demo: "INSIRA FICHA" no lugar de "PLEASE INSERT COIN"; "NÍVEL" na subida de nível
+  Ainda em inglês (gráficos decorativos): título "PLAYER SELECT", "CONTINUE", "GAME OVER",
+  "RANKING", "BONUS/TOTAL" e o "L-10" do ranking.
+
+MAME
+  Substitua os 11 arquivos dentro do zip (com o ddtodu.key incluso). O MAME vai avisar que
+  o checksum está errado, mas roda normalmente.

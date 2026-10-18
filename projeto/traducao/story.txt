@@ -1,0 +1,120 @@
+# Diálogos da história: número do registro|texto ("/" = nova linha, máx. 29 caracteres por linha)
+# Registros vazios (17-20, 81, 82, 85-87, 89, 109, 110) e o 102 (letras gráficas) ficam como estão.
+0|     Digite o seu nome.
+1|Um guarda ferido da caravana/cai diante de você.
+2|Socorro, por favor!/Nossa caravana foi atacada/por uma horda de monstros.
+3|A cidade está sitiada!/Muitos de seus defensores/caíram diante do ataque/dos monstros.
+4|Obrigado por resgatar nossa/cidade e salvar a todos nós.
+5|Por favor, aceite isto como/um pequeno sinal da nossa/gratidão. Dizem que possui/poderes mágicos.
+6|Você descobre que a arma/é mesmo mágica e vai/aumentar o seu poder/de ataque.
+7|Você encontra uma caverna/que leva ao coração da/montanha./Um rugido sinistro ecoa/lá do fundo.
+8|E recuperou as mercadorias/roubadas da caravana.
+9|Socorro! Eu era de uma/patrulha do Forte Cruth./Caçávamos a fera quando/ela nos atacou.
+10|A noite cai e você decide/acampar e descansar até o/amanhecer.
+11|Socorro!/Alguém me ajude, por favor!
+12|Que sorte! Eu já ia me/contentar com um petisco,/mas um banquete inteiro/veio direto até mim!
+13|Como posso agradecer? Eu/tive tanto medo. Achei que/com certeza ia morrer.
+14|Meu pai tem um entreposto/perto de Corunglain.
+15|Por que duas criaturas/teriam uma só sombra?/Mire na sombra, é lá que/a criatura realmente está.
+16|Você derrotou a fera/e salvou o forte.
+21|Armas mágicas dão um bônus/ao seu poder de ataque.
+22|Você derrotou o terrível/dragão negro.
+23|Bem-vindos, sou o prefeito/de Corunglain. Lorde Linton/me disse que viriam.
+24|Lorde Linton diz que vocês/são grandes heróis./Por favor, salvem a cidade/desses demônios.
+25|Você segue o caminho pelo/antigo canal de água./O ar podre agride o seu/nariz.
+26|Este lugar já foi cheio de/mineiros. Mas agora as/vigas de sustentação/apodreceram. Elas rangem e/gemem, sempre ameaçando/desabar.
+27|Você ouve o som solitário/de água pingando, ecoando/ao longe./A luz da sua lanterna/brilha no calcário/úmido.
+28|A passagem se abre/numa caverna./Uma enorme cidade subterrânea/se estende diante de você.
+29|Torre Negra?
+30|Ah! Uma de nossas patrulhas/viu uma enorme torre negra/surgir perto de umas ruínas/antigas nas Terras/Partidas.
+31|A torre fica ao norte./A cidade aliada mais próxima/é o Forte Runnels./Você decide ir até o Forte/em busca de informações.
+32|Se forem tolos o bastante/para ir àquela torre maldita,/há dois caminhos até lá.
+33|Com todos os preparativos/feitos, você começa a descer/até o covil do dragão.
+34|Bem à sua frente está a/montanha./Uma trilha estreita e sinuosa/a contorna./Além dela, o brilho maligno/da Torre Negra aguarda por/você, ameaçador.
+35|Seu nome viverá para sempre/entre os grandes matadores/de dragões.
+36|Você enfim chega à negra/fonte do mal, a Torre/Negra.
+37|Bem-vindos, que prazer ter/vocês aqui.  Desta vez não/vou perder tempo e acabarei/com vocês agora!
+38|Acham que me derrotaram./Mas meu mestre é mais/poderoso do que vocês/podem imaginar.
+39|Então, “heróis”, sigam-me/até a sua ruína./Vou destruí-los para o/deleite do meu mestre.
+40|Venham, venham até a Torre/Negra.
+41|Vou cantar enquanto quebro/seus corpos e esmago suas/almas.
+42|Socorro!  Estamos sendo/atacados!
+43|Socorro, por favor.
+44|Você ouve gritos mais/adiante.
+45|Você chega ao pântano do/Dragão. Só há um silêncio/sinistro, o fedor de água/podre e ar parado.
+46|Na estrada para Darokin,/o coração da república.
+47|Armamos algumas armadilhas/para os monstros no forte./Tomem cuidado com elas.
+48|Na estrada para Darokin.
+49|Você expulsou os monstros/da cidade.
+50|Você derrotou o líder.
+51|Você salvou a filha do/mercador da mantícora.
+52|Você derrotou a fera/e salvou o forte.
+53|Ele quase te pegou. Você não/sabe que é preciso queimar/um troll para liquidá-lo?
+54|Você derrotou o terrível/dragão negro.
+55|Você ouve um gemido vindo/da mata.
+56|Você consegue chegar à/cidade de Athenos.
+57|Bem-vindos à minha casa./Sou Corwyn Linton.  Eu os/esperava há algum tempo./Vejam, tenho algo a lhes/pedir.
+58|Desde Thaumont, um dragão/enorme do pântano vem/devastando nossas caravanas.
+59|Podem derrotar esse dragão?
+60|Excelente!  Sei que vão/conseguir.  Tomem isto./O poder destes itens será/de grande ajuda.
+61|Sua confiança diz muito./Que nada os detenha./Por favor, aceitem estas/armas, sua magia irá/ajudá-los.
+62|Você derrotou o terrível/dragão negro.
+63|Você chega à cidade de/Darokin e logo avisa os/guardas do perigo que o/forte corria.
+64|Um mensageiro de/Corwyn Linton
+65|Enquanto você janta na/estalagem, um estranho se/aproxima e começa a falar/com você.
+66|Meu senhor, Corwyn Linton,/governante da cidade de/Athenos, deseja falar/com vocês.
+67|Ele pede que venham à/cidade de Athenos para/encontrá-lo.
+68|Corwyn providenciou um/navio para levá-lo até/Athenos pelo Rio Streel.
+69|Senhores do abismo!/Estamos cercados, vão/tentar nos afundar!
+70|Bem dito!  Sua/habilidade em combate deve/ser magnífica.
+71|Excelente!/Voltem vitoriosos!
+72|        Forte Cruth
+73|Alguns seguem para as/montanhas, mas outros se/reúnem para atacar a/cidade.
+74|A esta altura, pode estar/atacando o próprio forte!
+75|Tenho certeza de que meu pai/e eu podemos recompensá-los/muito bem lá.
+76|Seus esforços patéticos/vão divertir muito/Deimos.
+77|Há três áreas onde os/monstros aparecem com/frequência.
+78|No início achamos que ele/estava louco, mas agora...
+79|Vocês podem seguir a trilha/longa que contorna a montanha/ou atravessá-la pelos/antigos túneis dos anões.
+80|Porém, esse caminho é/guardado pelo grande dragão/vermelho Flamewing!
+83|Esperaremos vocês na Torre./Tentem não se atrasar./Ha, ha, ha, ha...
+84|Alguém está fazendo esses/monstros lutarem juntos em/vez de lutarem entre si.
+88|Se tiverem um pingo de juízo,/fujam enquanto podem!
+95|  Qual área devemos/  investigar primeiro?/{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}{14A4}
+96|Então eu estava certo, cães,/acham que seus poderes/patéticos bastam contra mim./Eu, Deimos, o arquilich/supremo, senhor do mundo!
+97|Tolos, vocês só chegaram/até aqui porque eu quis/ver com meus próprios olhos/seus últimos momentos/de agonia.
+98|Meus lacaios vão esmagá-los/e, quando vocês caírem,/as terras livres cairão/junto.
+99|Muito bem, patifes, lutaram/bem contra meus lacaios/fracos e ineptos.  Agora/enfrentem a fúria de/Deimos, Senhor da Noite!
+100|Com sua derrota, nada vai/me deter.  Vou brindar às/minhas futuras vitórias/sobre seus corpos/destroçados.  Ah ha ha ha...
+101|Não! Não! Não! Impossível!/Estou destinado a conquistar,/a governar!  Como pude ser/derrotado por fedelhos/como vocês?
+103|    A aventura continua!
+104|Como bem sabem, os ataques/de monstros e semi-humanos/aumentaram e estão mais/fortes e organizados do/que nunca.
+105|Obviamente há alguém/por trás de tudo isso.
+106|Encontrem esse titereiro e/cortem os fios!
+107|Seguindo o conselho de/Corwyn, você chega à cidade/de Corunglain, onde os/ataques de monstros/aumentaram muito.
+108|Enfim, você chegou ao/Forte Runnels.
+111|Temos que sair/daqui!/A torre está desabando!
+112|Esperem, olhem o trono./É um cristal de teleporte!
+113|Então faça ele funcionar/e nos tire daqui!
+114|Vai nos deixar agora?/Triunfamos juntos./Ainda há muito trabalho/a fazer.
+115|Ele tem razão./E a nossa irmandade?/Só a batalha importa/para você?
+116|Pessoal?  Ei, me esperem!
+117|Bem, essa foi uma diversão/agradável. E agora, o que/fazemos para nos animar?
+118|Bem-vindos!  Vocês, tolos,/acham mesmo que têm alguma/chance de me derrotar?
+119|Se tiverem coragem,/enfrentem-me agora!
+120|Você derrotou o observador.
+121|Tolos patéticos! Foi a honra/ou a cobiça que os trouxe/ao meu covil?  Seja como/for, vou lhes mostrar o/erro terrível que cometeram!
+122|Após uma batalha feroz, você/derrotou o dragão vermelho.
+123|Você achou um anel de/resistência ao fogo!
+124|Você achou um anel de/resistência ao fogo!
+125|Você achou um anel de/resistência ao fogo!
+126|Você achou um anel de/resistência ao fogo!
+127|Agora você está resistente/ao fogo.
+128|Agora você está resistente/ao fogo.
+129|Agora você está resistente/ao fogo.
+130|Agora você está resistente/ao fogo.
+131|Você afugentou o/Elfo Sombrio.
+132|Vejam!  As feridas do troll/estão se curando.
+133|Você derrotou o troll.
+134|Certo, não vou tentar/impedi-los./Boa sorte, vão precisar.
+135|Você achou armas mágicas/no tesouro escondido.

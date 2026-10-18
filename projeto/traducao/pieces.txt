@@ -1,0 +1,7 @@
+# Peças montadas pelo código (grupo:endereço do lea:endereço original:palavras de cabeçalho|texto)
+# Mensagem de subida de nível: "[NOME] chegou ao nível [N]." / "Seus PV máximos" / "aumentaram em [N]pontos."
+levelup:03F5CA:03F8F8:1| chegou ao nível
+levelup:03F5D6:03F914:1|.
+levelup:03F5E4:03F91C:1|Seus PV máximos
+levelup:03F5F2:03F948:1|aumentaram em 
+levelup:03F5FE:03F966:1|pontos.

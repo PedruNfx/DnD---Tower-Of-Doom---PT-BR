@@ -1,0 +1,4 @@
+# Pergunta com escolha (tabela 0x0F4E90): pergunta + 2 respostas
+F4EB0|Vocês nos livrarão dessa criatura?
+F4EFC|Pode deixar, vamos destruí-la.
+F4F3C|Faremos o possível!

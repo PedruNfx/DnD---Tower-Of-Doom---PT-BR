@@ -1,0 +1,13 @@
+# Falas dos chefes (endereço original do registro|texto). Máx. 31 caracteres por linha; posição recentralizada.
+D7960|Vocês perderam, ha ha.
+D799A|Preparem-se para o fim.
+D7A44|Estavam condenados desde o/início. Ninguém me derrota.
+D7AB8|Grrrooar!!
+D7ADA|Grrrooar!!
+D7AFC|Fome! Cheiro comida!
+D7CB8|Ah, que pena. Tanta/força. Tanta coragem./Tanta estupidez.
+D7BC8|Mortais insignificantes, não/tinham chance contra mim./Pena aprenderem uma lição/tão importante tão tarde/na vida.
+D7B30|Agora, testemunhem sua ruína!
+D7D42|Vocês já me divertiram/o bastante. Agora, “heróis”,/preparem-se para o fim!
+D79CA|Lembrem-se de mim! Ainda não/viram o meu fim!/Eu voltarei!
+D7B6A|Bem-vindos! Chegaram bem/na hora do jantar.
