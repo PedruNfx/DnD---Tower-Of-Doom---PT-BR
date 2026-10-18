@@ -456,7 +456,27 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
     my %F = (O => ['.###.', '##.##', '##.##', '##.##', '.###.'], L => ['##..', '##..', '##..', '##..', '####'], E => ['####', '##..', '###.', '##..', '####']);
     $F{"\x{d3}"} = $F{O}; my @pts = $draw->($put, \%F, "\x{d3}LEO", 22, 8, 1); push @pts, [25, 7], [26, 7];
     $put->($_->[0], $_->[1], 0xD) for @pts; }
-  print "shop signs: SA\x{cd}DA, \x{d3}LEO\n"; }
+  # class medallions on the pointing hands (shop cursor / select screen): F -> L (tiles 0x9524-25), D -> A (0x952A-2B)
+  { my ($get, $put) = $canvas->([0x9524, 0x9525]);   # letter pens 9 (stroke) with an A highlight on the stem
+    for my $y (4 .. 12) { for my $x (11 .. 21) { $put->($x, $y, 0) if $get->($x, $y) >= 9 && $get->($x, $y) <= 0xC; } }
+    my @L = ('#####...', '.##.....', '.##.....', '.##.....', '.##.....', '.##.....', '.##.....', '.##....#', '########');
+    for my $r (0 .. 8) { for my $c (0 .. 7) { next unless substr($L[$r], $c, 1) eq '#'; $put->(11 + $c, 4 + $r, ($c == 1 && $r >= 1 && $r <= 7) ? 0xA : 9); } } }
+  { my ($get, $put) = $canvas->([0x952A, 0x952B]);   # letter pens 3-7: 3 on top rows, 4 below, 5 on the left edge of each run
+    for my $y (3 .. 11) { for my $x (8 .. 26) { my $p = $get->($x, $y); $put->($x, $y, 0) if $p >= 3 && $p <= 7; } }
+    my @A = ('....###....', '...#####...', '...##.###..', '..###..###.', '..###..###.', '.#########.', '.###...###.', '###....####', '####..#####');
+    for my $r (0 .. 8) { for my $c (0 .. 10) { next unless substr($A[$r], $c, 1) eq '#'; my $left = $c == 0 || substr($A[$r], $c - 1, 1) ne '#';
+      $put->(11 + $c, 3 + $r, $left ? 5 : $r <= 3 ? 3 : 4); } } }
+  # the bigger hand of the shop cursor: F -> L (0x97F8-F9, pens 9-C), D -> A (0x97FE-FF, pens 4-8)
+  { my ($get, $put) = $canvas->([0x97F8, 0x97F9]);
+    for my $y (7 .. 13) { for my $x (10 .. 22) { $put->($x, $y, 0) if $get->($x, $y) >= 9 && $get->($x, $y) <= 0xC; } }
+    my @L = ('#####...', '.##.....', '.##.....', '.##.....', '.##.....', '.##....#', '########');
+    for my $r (0 .. 6) { for my $c (0 .. 7) { next unless substr($L[$r], $c, 1) eq '#'; $put->(12 + $c, 7 + $r, ($c == 1 && $r >= 1 && $r <= 5) ? 0xB : 9); } } }
+  { my ($get, $put) = $canvas->([0x97FE, 0x97FF]);
+    for my $y (6 .. 13) { for my $x (6 .. 25) { my $p = $get->($x, $y); $put->($x, $y, 0) if $p >= 4 && $p <= 8; } }
+    my @A = ('....###....', '...#####...', '..###.###..', '..##...##..', '.#########.', '.###...###.', '###.....###', '####...####');
+    for my $r (0 .. 7) { for my $c (0 .. 10) { next unless substr($A[$r], $c, 1) eq '#'; my $left = $c == 0 || substr($A[$r], $c - 1, 1) ne '#';
+      $put->(10 + $c, 6 + $r, $left ? 6 : $r <= 3 ? 4 : 5); } } }
+  print "shop signs: SA\x{cd}DA, \x{d3}LEO; hand medallions L, A\n"; }
 
 # ---------- short two-line "INSERT/ COIN" slot records (two tables of 4 slots: [pos, 0004, text, 4040]) ----------
 # "INSIRA/FICHA" centred needs one word more than the original, so the records move to the free pool
