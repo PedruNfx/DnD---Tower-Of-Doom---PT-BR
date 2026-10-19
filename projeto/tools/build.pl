@@ -553,6 +553,17 @@ sub patch_lea { my ($at, $target) = @_;
   for my $k (keys %ink) { my ($x, $y) = split /,/, $k; for my $s ([$x + 1, $y], [$x + 1, $y + 1]) { my ($sx, $sy) = @$s; $set->($sx, $sy, 0xC) if $sy <= 10 && $sx < 48 && !$ink{"$sx,$sy"}; } }
   for my $k (keys %ink) { my ($x, $y) = split /,/, $k; $set->($x, $y, $pen[$y]); }
   print "name entry: END -> FIM\n"; }
+# key counter "KEY=" (scroll1 rows 0x27C0/0x27E0/0x27F0: key icon, then the word and '=') -> "CHAVE" over the word and '='
+{ my %F = (C => ['###', '#..', '#..', '#..', '#..', '###'], H => ['#.#', '#.#', '###', '#.#', '#.#', '#.#'], A => ['.#.', '#.#', '#.#', '###', '#.#', '#.#'],
+           V => ['#.#', '#.#', '#.#', '#.#', '#.#', '.#.'], E => ['###', '#..', '##.', '#..', '#..', '###']);
+  my %ink; my $x = 1; for my $ch (split //, 'CHAVE') { my $m = $F{$ch}; for my $r (0 .. 5) { for my $c (0 .. 2) { $ink{ ($x + $c) . ',' . ($r + 1) } = 1 if substr($m->[$r], $c, 1) eq '#'; } } $x += 4; }
+  for my $codes ([0x27C3, 0x27C4, 0x27C5], [0x27E3, 0x27E4, 0x27E5], [0x27F3, 0x27F4, 0x27F5]) {
+    my $set = sub { my ($x, $y, $p) = @_; my $o = (0x20000 + $codes->[int($x / 8)]) * 64 + $y * 8; my @b = unpack('C8', substr($Font::G, $o, 8)); my $bit = 7 - $x % 8;
+      for my $pl (0 .. 3) { for my $hf (0, 1) { my $i = $pl + 4 * $hf; $b[$i] = ($b[$i] & ~(1 << $bit)) | ((($p >> $pl) & 1) << $bit); } } substr($Font::G, $o, 8) = pack('C8', @b); };
+    for my $y (0 .. 7) { for my $x (0 .. 23) { my $p = 15;
+      if ($ink{"$x,$y"}) { $p = 2 } else { for my $dy (-1 .. 1) { for my $dx (-1 .. 1) { $p = 0xE if $ink{ ($x + $dx) . ',' . ($y + $dy) }; } } }
+      $set->($x, $y, $p); } } }
+  print "key counter: KEY= -> CHAVE\n"; }
 # "There!" shout over the HUD before the wounded soldier (record [pos, 0010, text, 4040]; 4 letters -> one column right)
 { my $r = pack('n*', 0x1715, 0x0010, enc('Ali!'), 0x4040); die "There! record too long\n" if length $r > 18; substr($P, 0x0F3EB2, length $r) = $r; }
 
