@@ -347,8 +347,8 @@ ptrrecs(file => 'spells.txt', tables => [[0xFB1FA, 24]], hdr => 2, spell => 30, 
 
 # ---------- legal / boot texts (title trademark, copyright, WARNING, QSound): raw bytes in the bank-0 ASCII font ----------
 # Lines are fixed-width runs between '/' and '@'; a translation keeps the run width (padded, or centred if the original was).
-# New lowercase accents go into unused bank-0 codes: 0x7B á, 0x7C ã, 0x7D ç, 0x7E é, 0x60 í.
-{ my %acc = ("\x{e1}" => [0x7B, 0x61, 'acute'], "\x{e3}" => [0x7C, 0x61, 'tilde'], "\x{e7}" => [0x7D, 0x63, 'ced'], "\x{e9}" => [0x7E, 0x65, 'acute'], "\x{ed}" => [0x60, 0x69, 'acute']);
+# New lowercase accents go into unused bank-0 codes: 0x7B á, 0x7C ã, 0x7D ç, 0x7E é, 0x25 í (0x60 is the blank fill tile of the ranking header, keep it empty).
+{ my %acc = ("\x{e1}" => [0x7B, 0x61, 'acute'], "\x{e3}" => [0x7C, 0x61, 'tilde'], "\x{e7}" => [0x7D, 0x63, 'ced'], "\x{e9}" => [0x7E, 0x65, 'acute'], "\x{ed}" => [0x25, 0x69, 'acute']);
   my %ink = (acute => [[0,4],[1,3]], tilde => [[0,2],[0,3],[0,5],[1,1],[1,4]]);
   for my $ch (keys %acc) { my ($code, $base, $a) = @{ $acc{$ch} }; my $src = Font::get8($base); my $g = [ map { [ (15) x 8 ] } 0 .. 7 ];
     if ($a eq 'ced') {   # c raised one row, cedilla in rows 6-7
