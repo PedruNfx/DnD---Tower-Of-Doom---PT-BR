@@ -102,7 +102,7 @@ projeto/
 
 ## Créditos
 
-- Tradução, hacking e testes: **SEU NOME AQUI**
+- Tradução, hacking e testes: **Pedro Gui**
 - Jogo original: © Capcom 1994 · Dungeons & Dragons © TSR, Inc. · licenciado pela SSI
 
 Projeto de fã, sem fins lucrativos. Não venda o patch nem ROMs com ele aplicado.
