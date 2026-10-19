@@ -604,7 +604,24 @@ sub patch_lea { my ($at, $target) = @_;
     die sprintf("patch_imm %06X: found %04X, expected %04X\n", $at, $cur, $old) unless $cur == $old;
     substr($P, $at, 2) = pack('n', Crypt::enc($at, $new)); };
   $patch_imm->(0x0364AA, 0x0030, 0x0078); $patch_imm->(0x03676A, 0x0030, 0x01E0);
-  print "ranking: longer pauses\n"; }
+  print "ranking: longer pauses\n";
+  # show the ranking after START, before the character select. The start handler (0x001EC0) creates the game controller
+  # task with "move.w #0,d0 / lea $36DEE,a0 / jmp $DFA" at 0x001F54. It now creates our task in the free slot 0x40 instead:
+  # it clears the ranking state block, runs the ranking task in slot 0xF0 (as the attract does), waits until that slot is
+  # free, then creates the original controller in slot 0 and ends itself.
+  if ($ENV{RANK_ON_START} // 1) {
+    my @code = (0x42B9, 0x00FF, 0x0FD0, 0x42B9, 0x00FF, 0x0FD4, 0x42B9, 0x00FF, 0x0FD8,   # clr.l $FF0FD0..$FF0FE7 (ranking state)
+                0x42B9, 0x00FF, 0x0FDC, 0x42B9, 0x00FF, 0x0FE0, 0x42B9, 0x00FF, 0x0FE4,
+                0x303C, 0x00F0, 0x41F9, 0x0003, 0x647E, 0x4EB9, 0x0000, 0x0DFA,             # move.w #$F0,d0 / lea $3647E,a0 / jsr $DFA
+                0x7001, 0x4EB9, 0x0000, 0x0E84,                                             # loop: moveq #1,d0 / jsr $E84 (wait a frame)
+                0x4A39, 0x00FF, 0x0158, 0x6600,                                             # tst.b $FF0158 (slot F0 active) / bne.s loop
+                0x303C, 0x0000, 0x41F9, 0x0003, 0x6DEE, 0x4EB9, 0x0000, 0x0DFA,             # move.w #0,d0 / lea $36DEE,a0 / jsr $DFA
+                0x303C, 0x0040, 0x4EF9, 0x0000, 0x0E3C);                                    # move.w #$40,d0 / jmp $E3C (end this task)
+    my $na = alloc(2 * @code); $na = ($na + 1) & ~1;
+    my $loop = $na + 2 * 26; my $bne = $na + 2 * 33; $code[33] = 0x6600 | (($loop - ($bne + 2)) & 0xFF);
+    for my $i (0 .. $#code) { substr($P, $na + 2 * $i, 2) = pack('n', Crypt::enc($na + 2 * $i, $code[$i])); }
+    $patch_imm->(0x001F56, 0x0000, 0x0040); $patch_imm->(0x001F5A, 0x0003, $na >> 16); $patch_imm->(0x001F5C, 0x6DEE, $na & 0xFFFF);
+    printf "ranking on start: task at %06X\n", $na; } }
 
 # ---------- write program ROMs ----------
 mkdir $outdir; my @changed;
