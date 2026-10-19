@@ -567,6 +567,15 @@ sub patch_lea { my ($at, $target) = @_;
 # "There!" shout over the HUD before the wounded soldier (record [pos, 0010, text, 4040]; 4 letters -> one column right)
 { my $r = pack('n*', 0x1715, 0x0010, enc('Ali!'), 0x4040); die "There! record too long\n" if length $r > 18; substr($P, 0x0F3EB2, length $r) = $r; }
 
+# ---------- attract-mode ranking: longer pauses (immediates in encrypted code, sub-states at 0x0364A2/0x036588) ----------
+# 0x0364A8 move.w #$30,$10(a6): wait before the list starts scrolling (bottom entries) -> 2 s
+# 0x036768 move.w #$30,$10(a6): wait with the top of the list on screen before the fade -> 8 s
+{ my $patch_imm = sub { my ($at, $old, $new) = @_; my $cur = Crypt::dec($at, unpack('n', substr($P0, $at, 2)));
+    die sprintf("patch_imm %06X: found %04X, expected %04X\n", $at, $cur, $old) unless $cur == $old;
+    substr($P, $at, 2) = pack('n', Crypt::enc($at, $new)); };
+  $patch_imm->(0x0364AA, 0x0030, 0x0078); $patch_imm->(0x03676A, 0x0030, 0x01E0);
+  print "ranking: longer pauses\n"; }
+
 # ---------- write program ROMs ----------
 mkdir $outdir; my @changed;
 { my $img = pack('v*', unpack('n*', $P));
